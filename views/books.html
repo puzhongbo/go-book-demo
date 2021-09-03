@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>书籍列表</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-info" style="margin-top: 20px">
+        <div class="panel-heading">
+            <h3 class="panel-title">书籍列表<a href="/books/create" class="pull-right">添加书籍</a></h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th width="120">ID</th>
+                    <th>书籍名称</th>
+                    <th width="150">书籍价格</th>
+                    <th width="200">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ range $book := .books}}
+                <tr>
+                    <td>{{$book.Id}}</td>
+                    <td>{{$book.Name}}</td>
+                    <td>{{$book.Price}}</td>
+                    <td>
+                        <form action="/books/{{$book.Id}}/delete" method="post">
+                            <a href="/books/{{$book.Id}}/edit" class="btn btn-info btn-xs">编辑</a>
+                            <button href="javascript:;" class="btn btn-danger btn-xs">删除</button>
+                        </form>
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
